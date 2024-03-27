@@ -19,6 +19,7 @@
 <body>
 
 
+    <!-- Wordle game content -->
     <div class="container">
         <header>
             <h1>Wordle</h1>
@@ -26,8 +27,15 @@
         </header>
         <div class="tiles" id="tiles"></div>
         <div class="keys" id="keys"></div>
-        <div class="modal-outer">
-            <div class="modal-inner"></div>
+        <div class="modal-outer" id="gameOverModal">
+            <div class="modal-inner">
+                <span class="modal-close">&times;</span>
+                <!-- Your game over message here -->
+                <p>Game Over! You reached submission 7.</p>
+                <p>The Wordle word was 'ENTER'.</p>
+                <!-- Add the reset button -->
+                <button id="resetButton" class="reset-button">Reset Game</button>
+            </div>
         </div>
     </div>
 

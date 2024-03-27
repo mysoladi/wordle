@@ -58,7 +58,7 @@ h1 {
 .tile {
   width: 62px;
   height: 62px;
-  border: 1px solid var(--grey);
+  border: 1px solid var(--light-grey);
   padding: 1px;
   font-size: 32px;
   margin: 5px;
@@ -67,7 +67,7 @@ h1 {
   align-items: center;
 }
 .active {
-  border: 2px solid black;
+  border: 2px solid pink;
   padding: 0;
 }
 
@@ -122,63 +122,80 @@ h1 {
 }
 
 .notice {
-  opacity: 0;
-  transition: opacity 0.2s;
-  background-color: var(--dark-grey);
-  color: white;
-  padding: 1rem;
-  display: inline-block;
-  border-radius: 4px;
-  box-shadow: var(--light-grey) 2px 2px 3px;
-  min-width: 176px;
-  position: absolute;
-  top: 54px;
-  left: calc(50% - 105px);
-  z-index: 100;
-}
-
-.open {
-  opacity: 1;
-  pointer-events: all;
-}
-
-/* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
-    MODAL - notice .open already exists under NOTICE - delete that one, keep this one
-* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
-.modal-outer {
-  display: grid;
-  background: rgba(237, 237, 237, 0.7);
   position: fixed;
-  height: 100vh;
-  width: 100vw;
+  top: 70px; /* Adjust this value based on your header height */
+  left: 50%;
+  transform: translateX(-50%);
+  background-color: rgba(255, 0, 0, 0.7);
+  color: #fff;
+  padding: 10px 20px;
+  border-radius: 5px;
+  display: none;
+}
+
+
+.notice.open {
+  display: block;
+  animation: fadeInOut 1.5s ease-in-out forwards;
+}
+/* Modal styles */
+.modal-outer {
+  display: none;
+  position: fixed;
   top: 0;
   left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(0, 0, 0, 0.5); /* Semi-transparent background */
   justify-content: center;
   align-items: center;
-  opacity: 0;
-  transition: opacity 0.2s;
-  /* Hide this modal until we need it */
-  pointer-events: none;
+  z-index: 1000; /* Ensure modal is above other content */
 }
 
 .modal-inner {
-  max-width: 600px;
-  min-width: 400px;
+  max-width: 600px; /* Adjust width as needed */
   padding: 2rem;
+  background: white; /* Modal background color */
   border-radius: 6px;
-  min-height: 200px;
-  background: white;
-  box-shadow: 1px 1px 1px lightgrey;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.5); /* Shadow effect */
 }
 
-.modal-outer.open .modal-inner {
-  transform: translateY(0);
+/* Style the reset button */
+.reset-button {
+  display: block;
+  width: 100%;
+  padding: 12px 20px;
+  margin-top: 20px;
+  border: none;
+  border-radius: 8px;
+  background-color: var(--green);
+  color: white;
+  font-size: 18px;
+  font-weight: bold;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
 }
 
-/* needs to be at the end of the modal / notice CSS section */
-.open {
-  opacity: 1;
-  pointer-events: all;
+.reset-button:hover {
+  background-color: var(--gold); /* Change color on hover */
+}
+
+.modal-close {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  cursor: pointer;
+  /* Style the close button as needed */
+}
+
+/* Additional styles for modal content */
+.modal-content {
+font-family: 'Courier New', Courier, monospace;}
+
+/* Style for overlay when modal is open */
+.modal-outer.open {
+  display: block;
 }
 
 /* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *

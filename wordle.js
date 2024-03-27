@@ -291,13 +291,21 @@ function evaluateWord(currentGuess) {
     // Reset the current guess array
     currentGuess.length = 0;
 
+    let l = 0;
+    for (const i of resultArr) {
+        if (i === '1') { l += 1 }
+    }
+
+    if (l == 5) {
+        showGameOverModal(true); // Call the game over modal with a parameter indicating win
+    }
     // Increment the row if not at the last row
     if (currentTile.row < 6) {
         currentTile.row += 1;
         currentTile.tile = 1; // Reset the tile index for the new row
-        currentGuess = []; // Clear the currentGuess array for the new row
-    } else {
-        // Handle game over logic here
+    }
+    else {
+        showGameOverModal(false); // Call the game over modal with a parameter indicating loss
     }
 }
 
@@ -350,14 +358,6 @@ function updateDisplay(resultArray, result, currentGuess) {
             }
         });
     }
-
-
-
-
-    // Check if the game is over
-    if (result) {
-        document.querySelector(".notice").classList.add("open");
-    }
 }
 
 /**
@@ -366,11 +366,54 @@ function updateDisplay(resultArray, result, currentGuess) {
  * @returns {boolean}
  */
 function isValid(currentWord) {
-    console.log(wordleWord);
     return fullList.find((word) => word == currentWord.join('').toLowerCase());
 }
 
+// Function to show the game over modal
+function showGameOverModal(isWin) {
+    const modal = document.querySelector('.modal-outer');
+    const modalInner = modal.querySelector('.modal-inner');
+    const resetButton = modalInner.querySelector('#resetButton');
 
+    // Set modal content based on game outcome
+    if (isWin) {
+        modalInner.innerHTML = '<span class="modal-close">&times;</span>' +
+            '<p>Congratulations, you won!</p>' +
+            '<button id="resetButton" class="reset-button">Reset Game</button>';
+    } else {
+        modalInner.innerHTML = '<span class="modal-close">&times;</span>' +
+            '<p>You have lost, reset</p>' +
+            '<button id="resetButton" class="reset-button">Reset Game</button>';
+    }
+
+    modal.classList.add('open'); // Show the modal by adding the open class
+
+    // Add a delegated event listener to a parent element for the reset button click
+    document.body.addEventListener('click', handleResetButtonClick);
+
+    // Function to handle the reset button click
+    function handleResetButtonClick(event) {
+        if (event.target.id === 'resetButton') {
+            resetGame();
+        }
+    }
+}
+
+// Function to reset the game
+function resetGame() {
+    window.location.reload(); // Reload the page to reset the game
+}
+
+// Event listener for reset button click
+document.getElementById('resetButton').addEventListener('click', resetGame);
+
+// Event listener for 'Esc' key press to close the modal
+document.addEventListener('keydown', function (event) {
+    if (event.key === 'Escape') {
+        const modal = document.getElementById('gameOverModal');
+        modal.classList.remove('open'); // Hide the modal
+    }
+});
 
 
 
