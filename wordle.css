@@ -15,8 +15,9 @@ body {
   font-weight: 600;
   text-align: center;
   background-image: url(wife.png);
-  background-position: center;
+  background-position: center top; /* Adjusted background position */
   background-repeat: no-repeat;
+
 }
 
 h1{
@@ -229,14 +230,38 @@ h1 {
 }
 
 @media screen and (max-width: 768px) {
-  /* Adjust styles for smaller screens, such as phones */
-  body {
-    font-size: 16px; /* Adjust font size as needed */
-  }
-
   .container {
-    max-width: 90%; /* Adjust container width for smaller screens */
+    max-width: 90%;
+    margin: 30px auto 0;
   }
 
-  /* Add more styles as needed for responsive design */
+  header {
+    max-width: 90%;
+    margin: 0 auto;
+  }
+
+  .tiles {
+    margin-bottom: 2rem;
+  }
+
+  .tile {
+    width: 50px;
+    height: 50px;
+    font-size: 24px;
+    margin: 3px;
+  }
+
+  .key {
+    height: 45px;
+    min-width: 35px;
+    font-size: 16px;
+    margin: 3px;
+  }
+
+  .notice {
+    padding: 0.8rem;
+    min-width: 140px;
+    top: 40px;
+    left: calc(50% - 70px);
+  }
 }
