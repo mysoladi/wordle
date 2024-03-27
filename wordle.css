@@ -227,3 +227,16 @@ h1 {
         transform: translateY(0);
     }
 }
+
+@media screen and (max-width: 768px) {
+  /* Adjust styles for smaller screens, such as phones */
+  body {
+    font-size: 16px; /* Adjust font size as needed */
+  }
+
+  .container {
+    max-width: 90%; /* Adjust container width for smaller screens */
+  }
+
+  /* Add more styles as needed for responsive design */
+}
